@@ -1,2 +1,3 @@
 iteration	branch	metric	delta	guard	status	description
 6	autoresearch-avoid-variadic-alloc	263400	-16300	pass	kept	Split Attr into booleanAttr/valueAttr - prevents variadic []string escape (-23% allocs, -5.8% ns/op vs upstream baseline 279700)
+9	autoresearch-void-switch	260300	-3100	pass	kept	Replace isVoidElement map with switch statement (-1.2% construct+render, -2.3% render-only)
