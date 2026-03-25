@@ -1,0 +1,1 @@
+5	autoresearch-inline-renderchild	-	-	-	discarded	CPU profiling revealed 73% time in GC/alloc - abandoned renderChild inlining as rendering is only 10% of CPU
