@@ -165,22 +165,17 @@ func renderChild(w io.Writer, c Node, desiredType NodeType) error {
 		return nil
 	}
 
-	switch desiredType {
-	case ElementType:
-		if p, ok := c.(nodeTypeDescriber); !ok || p.Type() == desiredType {
-			if err := c.Render(w); err != nil {
-				return err
-			}
+	p, hasType := c.(nodeTypeDescriber)
+	if hasType {
+		if p.Type() != desiredType {
+			return nil
 		}
-	case AttributeType:
-		if p, ok := c.(nodeTypeDescriber); ok && p.Type() == desiredType {
-			if err := c.Render(w); err != nil {
-				return err
-			}
-		}
+	} else if desiredType == AttributeType {
+		// Nodes without a type are treated as ElementType, so skip them when looking for attributes.
+		return nil
 	}
 
-	return nil
+	return c.Render(w)
 }
 
 // isVoidElement reports whether the named element is a void element that doesn't have an end tag.
