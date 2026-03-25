@@ -232,6 +232,8 @@ func booleanAttr(name string) Node {
 
 // valueAttr creates a name-value attribute Node.
 func valueAttr(name, value string) Node {
+	escapedValue := template.HTMLEscapeString(value)
+
 	return attrFunc(func(w io.Writer) error {
 		var err error
 
@@ -256,11 +258,11 @@ func valueAttr(name, value string) Node {
 		}
 
 		if ok {
-			if _, err = sw.WriteString(template.HTMLEscapeString(value)); err != nil {
+			if _, err = sw.WriteString(escapedValue); err != nil {
 				return err
 			}
 		} else {
-			if _, err = w.Write([]byte(template.HTMLEscapeString(value))); err != nil {
+			if _, err = w.Write([]byte(escapedValue)); err != nil {
 				return err
 			}
 		}
