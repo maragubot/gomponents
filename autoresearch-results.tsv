@@ -3,3 +3,4 @@ iteration	branch	metric	delta	guard	status	description
 9	autoresearch-void-switch	260300	-3100	pass	kept	Replace isVoidElement map with switch statement (-1.2% construct+render, -2.3% render-only)
 10	autoresearch-optimize-renderchild	258200	-2100	pass	kept	Simplify renderChild with single type assertion (-0.8% construct+render, -1.0% render-only)
 11	autoresearch-pre-escape-attr	253900	-4300	pass	kept	Pre-escape attribute values at creation time (-1.7% construct+render, -18.8% render-only)
+12	autoresearch-pre-escape-text	253700	-200	pass	discarded	Pre-escape Text/Textf at creation time - no meaningful construct+render improvement (within noise)
