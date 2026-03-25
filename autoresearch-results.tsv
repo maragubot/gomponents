@@ -1,3 +1,4 @@
 iteration	branch	metric	delta	guard	status	description
 1	autoresearch-combined-tag-writes	2690766	+260766	-	discarded	Pre-compute opening/closing tag strings to reduce write calls (added 20k allocs from string concat)
 2	autoresearch-separate-attrs-elements	-	-	fail	discarded	Separate attrs/elements at creation time - failed tests (Groups with attrs not unwrapped)
+3	autoresearch-struct-element	2480000	+123000	pass	discarded	Struct-based element and pre-rendered attributes - 12% less memory but 5% slower ns/op
