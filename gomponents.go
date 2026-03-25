@@ -87,21 +87,21 @@ var (
 // If an element is a void element, non-attribute children nodes are ignored.
 // Use this if no convenience creator exists in the html package.
 func El(name string, children ...Node) Node {
+	// Pre-compute opening and closing tag strings to reduce write calls during rendering.
+	openTag := "<" + name
+	closeTag := "</" + name + ">"
+
 	return NodeFunc(func(w io.Writer) error {
 		var err error
 
 		sw, ok := w.(io.StringWriter)
 
-		if _, err = w.Write(lt); err != nil {
-			return err
-		}
-
 		if ok {
-			if _, err = sw.WriteString(name); err != nil {
+			if _, err = sw.WriteString(openTag); err != nil {
 				return err
 			}
 		} else {
-			if _, err = w.Write([]byte(name)); err != nil {
+			if _, err = w.Write([]byte(openTag)); err != nil {
 				return err
 			}
 		}
@@ -126,22 +126,14 @@ func El(name string, children ...Node) Node {
 			}
 		}
 
-		if _, err = w.Write(ltSlash); err != nil {
-			return err
-		}
-
 		if ok {
-			if _, err = sw.WriteString(name); err != nil {
+			if _, err = sw.WriteString(closeTag); err != nil {
 				return err
 			}
 		} else {
-			if _, err = w.Write([]byte(name)); err != nil {
+			if _, err = w.Write([]byte(closeTag)); err != nil {
 				return err
 			}
-		}
-
-		if _, err = w.Write(gt); err != nil {
-			return err
 		}
 
 		return nil
