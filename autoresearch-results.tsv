@@ -1,2 +1,2 @@
 iteration	branch	metric	delta	guard	status	description
-6	autoresearch-avoid-variadic-alloc	-	-	pass	kept	Split Attr into booleanAttr/valueAttr (kept from before rebase)
+6	autoresearch-avoid-variadic-alloc	263400	-16300	pass	kept	Split Attr into booleanAttr/valueAttr - prevents variadic []string escape (-23% allocs, -5.8% ns/op vs upstream baseline 279700)
