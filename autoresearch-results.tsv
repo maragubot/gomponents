@@ -5,3 +5,4 @@ iteration	branch	metric	delta	guard	status	description
 4	autoresearch-prerender-attr-only	2372000	+15000	pass	discarded	Pre-render attribute strings at creation time - 9% less memory but ns/op unchanged
 6	autoresearch-avoid-variadic-alloc	2174000	-183000	pass	kept	Split Attr into booleanAttr/valueAttr - prevents variadic []string from escaping to heap (-25% allocs, -7.8% ns/op)
 7	autoresearch-el-avoid-variadic	-	-	-	discarded	El closure must capture children slice - can't avoid variadic escape like Attr
+8	autoresearch-internal-el-slice	-	-	-	discarded	User feedback: current benchmark not realistic enough, pivot to better benchmark
